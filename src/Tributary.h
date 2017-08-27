@@ -26,7 +26,7 @@ public:
     void addTributaryEnd(Tributary t);
     
     void setRandomPulse(int packetSize, int separation);
-    void pulse();
+    void pulseDraw();
     void updatePulse();
     
     bool inPulse(int index);

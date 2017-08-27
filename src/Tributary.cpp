@@ -69,7 +69,7 @@ void Tributary::addTributaryEnd(Tributary t) {
 void Tributary::setRandomPulse(int ps, int separation){
     repeat = packetSize+separation;
     packetSize = ps;
-    pulseIndex = int(random()*repeat+1);
+    pulseIndex = int(ofRandom(repeat)+1);
 }
 
 void Tributary::update(){
@@ -97,7 +97,7 @@ void Tributary::draw(ofColor c){
     }
 }
 
-void Tributary::pulse(){
+void Tributary::pulseDraw(){
     ofPoint person;
     ofColor c;
     person.set(100, 100);
