@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxKinectForWindows2.h"
 #include "ofxSvg.h"
+#include "ofxArtnet.h"
 #include "Tributary.h"
 
 class ofApp : public ofBaseApp{
@@ -46,5 +47,9 @@ class ofApp : public ofBaseApp{
 		vector<Tributary> universes;
 		vector<ofPoint> points;
 
+		//DECLARE AN ARTNET NODE  
+		ofxArtnet anNode;
+		//DECLARE DMX DATA = 512 BYTES  
+		unsigned char dmxData1[512];
 
 };

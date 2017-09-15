@@ -6,11 +6,20 @@ int previewHeight = 480;
 //--------------------------------------------------------------
 void ofApp::setup() {
 
-	///////////////////////////////////////
-	// ARTNET
-	//at first you must specify the Ip address of this machine
-	// artnet.setup("10.0.0.4"); //make sure the firewall is deactivated at this point
-	///////////////////////////////////////
+	// ARTNET SETUP  
+	// IP is our Node IP : machine on which the app runs  
+	// 0xFD corresponds to the Subnet+Universe we are referencing in Hexadecimal  
+	// Here we have Subnet 16 (F) Subnet 13 (D)  
+	anNode.setup("2.20.20.20", 0xFD);
+
+	// Building Data DMX frame  
+	// DMX Frame is 512 bytes with value 0 to 255. Here we set every channel to 0.  
+	for (int i = 0; i<512; i++) {
+		dmxData[i] = 0;
+	}
+
+	// Set DMX channel 1 with the value 255  
+	dmxData[0] = 255;
 
 	setupSimulation();
 
@@ -206,7 +215,8 @@ void ofApp::setRandomPulse(int ms, int ps, int sep) {
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
-
+	// When key stroke, send the DMX frame (dmxData) which is 512 Bytes long over artnet to the specified IP (Here GrandMA)  
+	anNode.sendDmx("2.168.14.52", dmxData, 512);
 }
 
 //--------------------------------------------------------------
